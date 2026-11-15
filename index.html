@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahaya Islam - Website Islami Modern</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0b4635;
+            --secondary-color: #106b52;
+            --accent-color: #d4af37;
+            --bg-light: #f4f7f6;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER / SECTIONS */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            min-height: 70vh;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* BERANDA STYLES */
+        .hero {
+            background: linear-gradient(rgba(11, 70, 53, 0.85), rgba(16, 107, 82, 0.85)), url('https://images.unsplash.com/photo-1564769625405-4f3bf3368291?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #e5c158;
+            transform: translateY(-2px);
+        }
+
+        .daily-wisdom {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .daily-wisdom h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* SUB-NAVIGATION (TABS FOR ARTIKEL & SHOLAT) */
+        .sub-nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .sub-nav-btn {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .sub-nav-btn:hover, .sub-nav-btn.active {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border-color: var(--primary-color);
+        }
+
+        /* CONTENT CARDS / BOXES */
+        .content-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+        }
+
+        .content-card h3 {
+            color: var(--secondary-color);
+            margin: 1.2rem 0 0.5rem 0;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            text-align: right;
+            direction: rtl;
+            margin: 1rem 0;
+            color: var(--primary-color);
+            line-height: 2.2;
+        }
+
+        .translation {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="switchPage('beranda')">
+                <i class="fa-solid fa-mosque"></i> Cahaya Islam
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-item active" onclick="switchPage('beranda')">Beranda</a></li>
+                <li><a href="#" class="nav-item" onclick="switchPage('menu')">Menu</a></li>
+                <li><a href="#" class="nav-item" onclick="switchPage('artikel')">Artikel Muslim</a></li>
+                <li><a href="#" class="nav-item" onclick="switchPage('sholat')">Sifat Sholat Nabi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <div class="container">
+
+        <!-- 1. BERANDA -->
+        <section id="beranda" class="page-section active">
+            <div class="hero">
+                <h1>Selamat Datang di Cahaya Islam</h1>
+                <p>Panduan Islami terpercaya untuk memperdalam ilmu agama, memahami sunnah Rasulullah SAW, serta memperbaiki ibadah sehari-hari.</p>
+                <button class="btn-primary" onclick="switchPage('sholat')">Pelajari Sifat Sholat Nabi</button>
+            </div>
+            <div class="daily-wisdom">
+                <h3><i class="fa-solid fa-book-open"></i> Mutiara Hadis Hari Ini</h3>
+                <p>"Sebaik-baik kalian adalah orang yang mempelajari Al-Qur'an dan mengajarkannya." (HR. Bukhari)</p>
+            </div>
+        </section>
+
+        <!-- 2. MENU -->
+        <section id="menu" class="page-section">
+            <div class="content-card">
+                <h2>Menu Utama Website</h2>
+                <p>Silakan pilih menu navigasi di bawah ini untuk menjelajahi konten Islami yang tersedia:</p>
+                <br>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: var(--bg-light); padding: 20px; border-radius: 8px; cursor: pointer; text-align: center;" onclick="switchPage('artikel')">
+                        <i class="fa-solid fa-newspaper fa-2x" style="color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <h3>Artikel Muslim</h3>
+                        <p>Kumpulan artikel pilihan seputar akidah, muamalah, dan akhlak.</p>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 20px; border-radius: 8px; cursor: pointer; text-align: center;" onclick="switchPage('sholat')">
+                        <i class="fa-solid fa-person-praying fa-2x" style="color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <h3>Sifat Sholat Nabi</h3>
+                        <p>Panduan tata cara sholat lengkap sesuai sunnah, do'a iftitah, dan dzikir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ARTIKEL MUSLIM -->
+        <section id="artikel" class="page-section">
+            <div class="sub-nav">
+                <button class="sub-nav-btn active" onclick="switchSubTab('artikel', 'art-1')">Keutamaan Sholat Berjamaah</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('artikel', 'art-2')">Adab Menuntut Ilmu</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('artikel', 'art-3')">Menjaga Lisan di Era Digital</button>
+            </div>
+
+            <div id="art-1" class="sub-content artikel-content content-card">
+                <h2>Keutamaan Sholat Berjamaah di Masjid</h2>
+                <p>Sholat berjamaah memiliki keutamaan yang sangat besar dibandingkan sholat sendirian (munfarid). Rasulullah SAW bersabda bahwa sholat berjamaah dilipatgandakan pahalanya sebanyak 27 derajat.</p>
+                <h3>Pelajaran Penting:</h3>
+                <ul>
+                    <li>Mempererat tali silaturahmi antar sesama Muslim.</li>
+                    <li>Melatih kedisiplinan dan keselarasan barisan (shaf).</li>
+                    <li>Mendapatkan naungan Allah SWT di hari kiamat bagi yang hatinya terpaut dengan masjid.</li>
+                </ul>
+            </div>
+
+            <div id="art-2" class="sub-content artikel-content content-card" style="display: none;">
+                <h2>Adab Menuntut Ilmu dalam Islam</h2>
+                <p>Menuntut ilmu adalah kewajiban bagi setiap Muslim. Namun, keberkahan ilmu sangat bergantung pada adab seseorang terhadap guru, kitab, dan ilmunya itu sendiri.</p>
+                <h3>Poin Utama Adab Belajar:</h3>
+                <ul>
+                    <li>Niat yang ikhlas hanya karena Allah SWT.</li>
+                    <li>Rendah hati (tawadhu') kepada guru dan sesama penuntut ilmu.</li>
+                    <li>Mengamalkan ilmu yang telah dipelajari.</li>
+                </ul>
+            </div>
+
+            <div id="art-3" class="sub-content artikel-content content-card" style="display: none;">
+                <h2>Menjaga Lisan dan Jari di Era Digital</h2>
+                <p>Di zaman modern ini, lisan tidak hanya berupa ucapan mulut, tetapi juga ketikan jari di media sosial. Setiap kata yang ditulis akan dimintai pertanggungjawaban di akhirat.</p>
+                <h3>Tips Bermedia Sosial Islami:</h3>
+                <ul>
+                    <li>Saring sebelum berbagi (Tabayyun).</li>
+                    <li>Hindari ghibah digital, ujaran kebencian, dan hoax.</li>
+                    <li>Gunakan media sosial untuk menyebarkan kebaikan dan nasihat bermanfaat.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. SIFAT SHOLAT NABI -->
+        <section id="sholat" class="page-section">
+            <div class="sub-nav">
+                <button class="sub-nav-btn active" onclick="switchSubTab('sholat', 'sh-1')">Cara Sholat Nabi</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('sholat', 'sh-2')">Bacaan Sholat Sesuai Sunnah</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('sholat', 'sh-3')">12 Macam Doa Iftitah</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('sholat', 'sh-4')">Dzikir Setelah Sholat</button>
+            </div>
+
+            <!-- 4.1 Cara Sholat Nabi -->
+            <div id="sh-1" class="sub-content sholat-content content-card">
+                <h2>Tata Cara Sholat Nabi SAW</h2>
+                <p>Berikut adalah ringkasan tata cara sholat berdasarkan hadis shahih sifat sholat Nabi SAW:</p>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li><strong>Berdiri Tegak & Niat:</strong> Menghadap kiblat dengan khusyuk (niat dilafalkan dalam hati tanpa harus diucapkan keras).</li>
+                    <li><strong>Takbiratul Ihram:</strong> Mengangkat tangan sejajar dengan pundak atau telinga sambil mengucapkan "Allahu Akbar".</li>
+                    <li><strong>Membaca Doa Iftitah:</strong> Membaca salah satu dari riwayat doa iftitah yang shahih.</li>
+                    <li><strong>Membaca Al-Fatihah:</strong> Wajib dibaca pada setiap rakaat, diawali dengan ta'awudz.</li>
+                    <li><strong>Ruku' dengan Tuma'ninah:</strong> Membungkuk dengan punggung lurus, tangan memegang lutut, membaca tasbih ruku'.</li>
+                    <li><strong>I'tidal:</strong> Bangkit tegak dari ruku' sambil mengangkat tangan dan membaca "Sami'allahu liman hamidah".</li>
+                    <li><strong>Sujud Dua Kali:</strong> Meletakkan 7 anggota badan di lantai (dahi, hidung, dua telapak tangan, dua lutut, dua ujung kaki), diselingi duduk di antara dua sujud.</li>
+                    <li><strong>Tasyahud Akhir & Salam:</strong> Duduk tasyahud akhir, membaca shalawat, lalu menengok ke kanan dan ke kiri mengucapkan salam.</li>
+                </ol>
+            </div>
+
+            <!-- 4.2 Bacaan Sholat Sesuai Sunnah -->
+            <div id="sh-2" class="sub-content sholat-content content-card" style="display: none;">
+                <h2>Bacaan Sholat Sesuai Sunnah</h2>
+                
+                <h3>1. Doa Ruku'</h3>
+                <div class="arabic-text">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+                <p class="translation">Artinya: "Maha Suci Rabbku Yang Maha Agung." (Dibaca 3x)</p>
+
+                <h3>2. Doa I'tidal</h3>
+                <div class="arabic-text">رَبَّنَا وَلَكَ الْحَمْدُ حَمْداً كَثِيراً طَيِّباً مُبَارَكاً فِيهِ</div>
+                <p class="translation">Artinya: "Ya Tuhan kami, bagi-Mu segala puji, pujian yang banyak, yang baik dan penuh berkah di dalamnya."</p>
+
+                <h3>3. Doa Sujud</h3>
+                <div class="arabic-text">سُبْحَانَ رَبِّيَ الأَعْلَى</div>
+                <p class="translation">Artinya: "Maha Suci Rabbku Yang Maha Tinggi." (Dibaca 3x)</p>
+
+                <h3>4. Doa Duduk di Antara Dua Sujud</h3>
+                <div class="arabic-text">رَبِّ اغْفِرْ لِي وَرْحَمْنِي وَاجْتُرْنِي وَارْفَعْنِي وَارْزُقْنِي وَهْدِنِي وَعَافِنِي وَاعْفُ عَنِّي</div>
+                <p class="translation">Artinya: "Ya Rabb, ampunilah dosaku, sayangilah aku, tutuplah aibku, angkatlah derajatku, berikanlah aku rezeki, berikanlah aku petunjuk, sehatkanlah aku, dan maafkanlah aku."</p>
+            </div>
+
+            <!-- 4.3 12 Macam Doa Iftitah -->
+            <div id="sh-3" class="sub-content sholat-content content-card" style="display: none;">
+                <h2>12 Macam Doa Iftitah (Sunnah)</h2>
+                <p>Rasulullah SAW mengajarkan berbagai macam doa iftitah yang shahih. Kita dapat mengamalkannya secara bergantian untuk menghidupkan sunnah:</p>
+
+                <h3>1. Doa Iftitah Versi Umum (HR. Muslim)</h3>
+                <div class="arabic-text">اللَّهُ أَكْبَرُ كَبِيرًا وَالْحَمْدُ لِلَّهِ كَثِيرًا وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلًا...</div>
+                <p class="translation">Artinya: "Allah Maha Besar dengan sebesar-besarnya..."</p>
+
+                <h3>2. Doa Iftitah Wajahtu (HR. Muslim)</h3>
+                <div class="arabic-text">وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَاوَاتِ وَالأَرْضَ حَنِيفًا...</div>
+                <p class="translation">Artinya: "Aku menghadapkan wajahku kepada Zat yang menciptakan langit dan bumi dengan lurus..."</p>
+
+                <h3>3. Doa Iftitah Allahumma Ba'id (HR. Bukhari & Muslim)</h3>
+                <div class="arabic-text">اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ...</div>
+                <p class="translation">Artinya: "Ya Allah, jauhkanlah antaran aku dan kesalahan-kesalahanku sebagaimana Engkau menjauhkan timur dan barat..."</p>
+
+                <p style="margin-top: 15px; background: #e8f5e9; padding: 15px; border-radius: 6px;">
+                    <i class="fa-solid fa-circle-info"></i> <strong>Catatan:</strong> Terdapat total 9 variasi riwayat shahih lainnya (seperti riwayat Imam An-Nasa'i, Abu Dawud, dll.) yang dapat diamalkan secara bergantian agar sholat lebih bervariasi sesuai sunnah.
+                </p>
+            </div>
+
+            <!-- 4.4 Dzikir Setelah Sholat -->
+            <div id="sh-4" class="sub-content sholat-content content-card" style="display: none;">
+                <h2>Dzikir Setelah Sholat Fardhu</h2>
+                
+                <h3>1. Istighfar & Salam</h3>
+                <div class="arabic-text">أَسْتَغْفِرُ اللهَ (3x)</div>
+                <p class="translation">"Aku memohon ampun kepada Allah." (Dibaca 3 kali)</p>
+                <div class="arabic-text">اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالإِكْرَامِ</div>
+                <p class="translation">"Ya Allah, Engkau lah As-Salam (Maha Sejahtera) dan dari-Mu lah kesejahteraan..."</p>
+
+                <h3>2. Tasbih, Tahmid, dan Takbir (33x)</h3>
+                <p>Masing-masing dibaca 33 kali:</p>
+                <ul>
+                    <li><strong>Subhanallah</strong> (Maha Suci Allah) - 33x</li>
+                    <li><strong>Alhamdulillah</strong> (Segala puji bagi Allah) - 33x</li>
+                    <li><strong>Allahu Akbar</strong> (Allah Maha Besar) - 33x</li>
+                </ul>
+                <p style="margin-top: 10px;">Lalu disempurnakan menjadi 100 dengan membaca:</p>
+                <div class="arabic-text">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</div>
+                <p class="translation">"Tidak ada ilah yang berhak disembah selain Allah Yang Maha Esa, tidak ada sekutu bagi-Nya..."</p>
+
+                <h3>3. Membaca Ayat Kursi</h3>
+                <p>Membaca Surah Al-Baqarah ayat 255 setiap selesai sholat fardhu adalah salah satu sebab dijaminnya surga.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Cahaya Islam. All Rights Reserved. Panduan Ibadah Sesuai Sunnah.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Toggle Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Fungsi Berpindah Halaman Utama (Beranda, Menu, Artikel, Sholat)
+        function switchPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update Active Link di Navbar
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            event && event.target.tagName === 'A' && event.target.classList.add('active');
+
+            // Tutup mobile menu jika terbuka
+            navLinks.classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fungsi Berpindah Sub-Navigasi (Tab di dalam Artikel & Sifat Sholat)
+        function switchSubTab(category, contentId) {
+            // Tentukan selector berdasarkan kategori
+            let contentClass = category === 'artikel' ? '.artikel-content' : '.sholat-content';
+            
+            // Sembunyikan semua konten sub-menu terkait
+            const contents = document.querySelectorAll(contentClass);
+            contents.forEach(c => c.style.display = 'none');
+
+            // Tampilkan konten yang dipilih
+            const targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.style.display = 'block';
+            }
+
+            // Ubah status tombol aktif pada sub-nav
+            const clickedButton = event.target;
+            const parentSubNav = clickedButton.parentElement;
+            const buttons = parentSubNav.querySelectorAll('.sub-nav-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            clickedButton.classList.add('active');
+        }
+    </script>
+</body>
+</html>
